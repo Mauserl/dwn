@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Downloadseite</title>
+    <script>
+        function downloadImage() {
+            // Extrahiere den Bildlink aus der URL
+            var url = decodeURIComponent(window.location.href);
+            var startIndex = url.indexOf("?url=") + 5;
+            var endIndex = url.length;
+            var imageUrl = url.substring(startIndex, endIndex);
+
+            // Extrahiere den Dateinamen aus dem Bildlink
+            var filename = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+
+            // Erstelle einen unsichtbaren Link und starte den Download
+            var link = document.createElement("a");
+            link.href = imageUrl;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</head>
+<body onload="downloadImage()">
+    <h1>Herunterladen...</h1>
+</body>
+</html>
